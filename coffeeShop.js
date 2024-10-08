@@ -5,16 +5,15 @@ class CoffeeShop {
         this._orders = orders
     }
 
-    addOrder(item) {
-        for (let idx = 0; idx < this.menu.length; idx++) {
-            if (this.menu[idx].name = item) {
+    addOrder(itemName) {
+        let item = this.menu.find((menuItem) => menuItem === itemName)
+            if (item) {
                 this._orders.push(item)
                 return "order added"
             }
             else {
                 return "this item is currently unavailable"
             }
-        }
         
     }
 
@@ -33,45 +32,22 @@ class CoffeeShop {
     }
 
     dueAmount() {
-        let sum = 0
-        for (let idx = 0; idx < this.menu.length; idx++) {
-            let price = this.menu[idx].price
-            sum += price
-        }
-        return sum
+        return this.menu.reduce((acc, item) => acc += item.price,0)
     }
 
     cheapestItem() {
-        let cheapestItem = ''
-        let minPrice = Infinity
-        for (let idx = 0; idx < this.menu.length; idx++) {
-            const item = this.menu[idx]
-            if (item.price < minPrice) {
-                minPrice = item.price
-                cheapestItem = item.name
-            }
-        }
-        return cheapestItem
+        const item =  this.menu.reduce((acc, item) => {
+            return (item.price < acc.price) ? item : acc
+        })
+        return item.name
     }
 
     drinksOnly() {
-        let drinks = []
-        for (let idx = 0; idx < this.menu.length; idx++) {
-            if (menu[idx].type == 'drink') {
-                drinks.push(menu[idx].name)
-            }
-        }
-        return drinks
+        return this.menu.filter((item) => item.type === 'drink').map((item) => item.name)
     }
 
     foodOnly() {
-        let food = []
-        for (let idx = 0; idx < this.menu.length; idx++) {
-            if (menu[idx].type == 'food') {
-                food.push(menu[idx].name)
-            }
-        }
-        return food
+        return this.menu.filter((item) => item.type === 'food').map((item) => item.name)
     }
 }
 
