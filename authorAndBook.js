@@ -1,79 +1,79 @@
 class Author {
     constructor(name, email, gender) {
-        this.name = name
-        this.email = email
-        this.gender = gender.toLowerCase()
+        this._name = name
+        this._email = email
+        this._gender = gender.toLowerCase()
     }
 
-    getName() {
-        return this.name
+    get name() {
+        return this._name
     }
 
-    getEmail() {
-        return this.email
+    get email() {
+        return this._email
     }
 
-    getGender() {
-        return this.gender
+    get gender() {
+        return this._gender
     }
 
     toString() {
-        return this.gender === 'male' ? `Mr. ${this.name}` : `Ms. ${this.name}`
+        return this._gender === 'male' ? `Mr. ${this.name}` : `Ms. ${this.name}`
     }
 }
 
 class Book {
     constructor(title, author, price, quantity) {
-        this.title = title
-        this.author = author
-        this.price = price
-        this.quantity = quantity
+        this._title = title
+        this._author = author
+        this._price = price
+        this._quantity = quantity
     }
 
-    getTitle() {
-        return this.title
+    get title() {
+        return this._title
     }
 
-    setTitle(title) {
-        this.title = title
+    set title(title) {
+        this._title = title
     }
 
-    getAuthor() {
-        return this.author
+    get author() {
+        return this._author
     }
 
-    setAuthor(author) {
-        this.author = author
+    set author(author) {
+        this._author = author
     }
 
-    getPrice() {
-        return this.price
+    get price() {
+        return this._price
     }
 
-    setPrice(price) {
-        this.price = price
+    set price(price) {
+        this._price = price
     }
 
-    getQuantity() {
-        return this.quantity
+    get quantity() {
+        return this._quantity
     }
 
-    setQuantity(quantity) {
-        this.quantity = quantity
+    set quantity(quantity) {
+        this._quantity = quantity
     }
 
     getProfit() {
-        return this.price * this.quantity
+        return this._price * this._quantity
     }
 
     toString() {
-        return `${this.title} was written by ${this.author}, the price is ${this.price}, and the quantity is ${this.quantity}`
+        return `${this._title} was written by ${this._author}, the price is ${this._price}, and the quantity is ${this._quantity}`
     }
 }
 
 let author1 = new Author("J. K. Rowling", "abc@gmail.com", "fEmaLe")
-console.log(author1.getGender())
-console.log(author1.getName())
+console.log(author1.gender)
+console.log(author1.name)
 console.log(author1.toString())
 
 let book1 = new Book("The Casual Vacancy", author1, 11.70, 100)
